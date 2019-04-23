@@ -1,0 +1,173 @@
+/* ---------------------------------------- */
+/* ==            SUMMARY              */
+/*---------------------------------------- */
+
+/* L 49		- Header - */
+/* L 75		- Sections - */
+/* L 99		- Footer - */
+/* L 118	- Media queries - */
+
+/* ---------------------------------------- */
+/* ==       COLOR CODES           */
+/*---------------------------------------- */
+/*
+Bleu-gris (background) : #A3C3F5
+Bleu foncé (footer) :    #8BB1EB
+*/
+
+
+/* ---------------------------------------- */
+/* == ÉLÉMENTS PRINCIPAUX */
+/*---------------------------------------- */
+
+/*     image de fond      */
+	
+
+/*     Lignes      */
+	.row
+	{
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+/*     Fond du site      */
+	.bg-bleu
+	{
+		background-color: #A3C3F5;
+	}
+
+
+/* ---------------------------------------- */
+/* ==            HEADER                */
+/*---------------------------------------- */
+
+/*     Navigation      */
+	.nav_banner
+	{
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	.navigation
+	{
+		display: none;
+	}
+	.nav_burger_extend
+	{
+		display: flex;
+		justify-content: space-around;
+	}
+	.nav_col
+	{
+		flex-direction: column;
+	}
+	a.text-light:hover, a.text-light:focus
+	{
+		color: white !important;
+		text-shadow: 2px 2px 2px black;
+	}
+
+/*     Slider      */
+	.banner
+	{
+		position: relative;
+		padding: 0;
+
+	}
+	.image
+	{
+		width: 100%;
+		border-radius: 6px;
+
+	}
+
+/* ---------------------------------------- */
+/* ==            SECTIONS                */
+/*---------------------------------------- */
+
+/*     Posts      */
+	.bg-light 
+	{
+		border-radius: 6px;
+	}
+
+/*     Notes      */
+	.notes
+	{
+		border-radius: 6px;
+		border: solid 1px black;
+		text-align: center;
+	}
+
+/*     Commentaires      */
+	.avatar
+	{
+		width: 64px;
+	}
+
+/* ---------------------------------------- */
+/* ==            FOOTER                 */
+/*---------------------------------------- */
+	
+	.page-footer
+	{
+		background-color: #8BB1EB;
+	}
+
+/*     Call to action      */
+	.btn
+	{
+		border:2px solid white;
+		border-radius: 1.5rem;
+		color: white;
+	}
+
+/*     Crédits      */
+
+nav
+{
+	background-image: url("AccueilAzu-01petit.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
+}
+
+/* ---------------------------------------- */
+/* ==       MEDIAS QUERIES        */
+/*---------------------------------------- */
+
+/*     Photo de présentation      */
+	@media screen and (max-width: 992px)
+	{
+		.hidden-xs
+		{
+			display: none;
+		}
+	}
+
+
+/*	Navigations		*/
+	@media screen and (min-width: 750px)
+	{
+		.navigation
+		{
+			display: flex;
+		}
+
+		.burger
+		{
+			display: none;
+		}
+
+		.background
+		{
+		  background-image: url(Background_forteroche.jpg);
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  background-attachment: fixed;
+		  background-position: top;
+		}
+	}
+
+
+

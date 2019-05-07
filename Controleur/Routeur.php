@@ -1,4 +1,4 @@
 <?php
-require_once 'Controleur/ControleurAccueil.php';
+require 'Controleur/ControleurAccueil.php';
 
 ?>

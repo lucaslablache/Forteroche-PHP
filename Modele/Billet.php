@@ -1,5 +1,5 @@
 <?php
-require 'Modele/Modele.php';
+require_once 'Modele/Modele.php';
 
 /**
  * 

@@ -4,17 +4,17 @@ $this->titre = "Blog Forteroche";// titre a modifier
 <?php foreach ($billets as $billet); ?>
     <article class="col-lg-12">
         <header class="col-lg-12 bg-light">
-            <a href="<?php "index.php?action=billet&id=" . $billet['id'] ?>"> <!-- balise php ou balise <.?= -->
-                <h1 class="titreBillet"><?php $billet['titre'] ?> </h1>
+            <a href="<?= "index.php?action=billet&id=" . $billet['id'] ?>"> <!-- balise php ou balise <.?= -->
+                <h1 class="titreBillet"><?= $billet['titre'] ?> </h1>
             </a>
             <time></time> <!-- balise time importante ? -->
         </header>
         <p class="col-lg-12 bg-light">
-            <?php $billet['contenu'] ?>
+            <?= $billet['contenu'] ?>
         </p>
         <div class="row">
-            <p class="col-lg-2 offset-lg-7 col-sm-5 offset-sm-1 notes"><?php $billet['date'] ?></p>
+            <p class="col-lg-2 offset-lg-7 col-sm-5 offset-sm-1 notes"><?= $billet['date'] ?></p>
             <p class="col-lg-2 offset-lg-1 col-sm-5 notes"> commentaires</p> <!-- récupérer le nombre de comms -->
-        </div>
+    </div>
     </article>
 <?php  endforeach; ?>

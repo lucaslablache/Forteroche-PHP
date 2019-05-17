@@ -1,3 +1,3 @@
 <?php $this->titre = "Forteroche - Erreur !"; ?>
 
-<p><?php $msgErreur ?></p>
+<p><?= $msgErreur ?></p>

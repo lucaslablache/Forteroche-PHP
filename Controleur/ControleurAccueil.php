@@ -16,8 +16,5 @@ class ControleurAccueil
         $billets = $this->billet->getBillets();
         $vue = new Vue("Accueil");
         $vue->generer(array('billets' => $billets));
-        //revoir la fonction
     }
 }
-
-?>

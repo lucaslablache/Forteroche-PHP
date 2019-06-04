@@ -22,21 +22,21 @@ class Routeur
             {
                 if ($_GET['action'] == 'billet')
                 {
-                    $idBillet = inval($this->getParametre($_GET, nom:'id'));
+                    $idBillet = intval($this->getParametre($_GET, 'id'));
                     if ($idBillet != 0)
                     {
                         $this->ctrlBillet->billet($idBillet);
                     }
                     else
                     {
-                        throw new Exception(message:"Identifiant de billet non valide");
+                        throw new Exception("Identifiant de billet non valide");
                     }
                 }
                 else if ($_GET['action'] == 'commenter')
                 {
-                    $auteur =$this->getParametre($_POST, nom:'auteur');
-                    $contenu =$this->getParametre($_POST, nom:'contenu');
-                    $idBillet =$this->getParametre($_POST, nom:'id');
+                    $auteur =$this->getParametre($_POST, 'auteur');
+                    $contenu =$this->getParametre($_POST, 'contenu');
+                    $idBillet =$this->getParametre($_POST, 'id');
                     $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
                 }
                 else
@@ -58,7 +58,7 @@ class Routeur
 
     private function erreur ($msgErreur)
     {
-        $vue = new Vue(action:"Erreur"); //syntaxe ?
+        $vue = new Vue("Erreur");
         $vue->generer(array('msgErreur' => $msgErreur));
     }
 
@@ -70,8 +70,7 @@ class Routeur
         }
         else
         {
-            throw new Exception(message:"parametre '$nom' absent");
+            throw new Exception("parametre '$nom' absent");
         }
     }
 }
-?>

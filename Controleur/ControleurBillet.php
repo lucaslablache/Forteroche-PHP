@@ -17,6 +17,7 @@ class ControleurBillet
     }
 
     //affichage du billet
+
     public function billet($idBillet)
     {
         $billet = $this->billet->getBillet($idBillet);
@@ -34,5 +35,3 @@ class ControleurBillet
         $this->billet($idBillet);
     }
 }
-
-?>

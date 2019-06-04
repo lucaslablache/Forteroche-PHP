@@ -34,4 +34,3 @@ class Billet extends Modele
         }
     }
 }
-?>

@@ -5,16 +5,24 @@ require_once 'Vue/Vue.php';
 class ControleurAccueil
 {
     private $billet;
+    private $billetManager;
 
     public function __construct()
     {
-        $this->billet = new Billet();
+        $this->billetManager = new Billet();
     }
 
     public function accueil()
     {
-        $billets = $this->billet->getBillets();
+        $PDObillets = $this->billetManager->getBillets();
+        $billets = [];
+        foreach ($PDObillets as $billet)
+        {
+            $billet += [ 'nb_comm' => $this->billetManager->getCommentairesCount($billet['id'])];
+            array_push($billets,$billet);
+        }
         $vue = new Vue("Accueil");
         $vue->generer(array('billets' => $billets));
+
     }
 }

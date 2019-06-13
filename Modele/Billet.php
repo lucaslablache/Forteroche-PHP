@@ -14,7 +14,7 @@ class Billet extends Modele
 	{
 		$sql = 'select BIL_ID as id, BIL_DATE as date, BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET order by BIL_ID desc';
 		$billets = $this->executerRequete($sql);
-		return $billets;
+        return $billets;
 	}
 
 	/**
@@ -26,16 +26,20 @@ class Billet extends Modele
         $billet = $this->executerRequete($sql, array($idBillet));
         if ($billet->rowCount() > 0)
         {
-            //$sql_com = 'SELECT * FROM `t_commentaire` WHERE BIL_ID=?';
-            //$nb_commentaires = $this->executerRequete($sql_com,array($idBillet));
-            // retun un array !!
-            // count pour récupérer le nombre 
             return $billet->fetch();  // Accès à la première ligne de résultat
         }
+
         else
         {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
         }
 
+    }
+    public function getCommentairesCount($idBillet)
+    {
+        $sql = 'select * from T_COMMENTAIRE where BIL_ID=?';
+        $commentaireCount = $this->executerRequete($sql, array($idBillet));
+        $commentaires = $commentaireCount->fetchAll();
+        return count($commentaires);
     }
 }

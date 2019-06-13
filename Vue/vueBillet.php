@@ -15,7 +15,7 @@
         <ul class="list-unstyled">
             <?php foreach ($commentaires as $commentaire): ?>
             <li class="media py-4">
-                <img class="mr-3 avatar" src="../Contenu/avatar.jpg" alt="Generic placeholder image">
+                <img class="mr-3 avatar" src="/Contenu/avatar.jpg" alt="Generic placeholder image">
                 <div class="media-body bg-light">
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                     <?= $commentaire['contenu'] ?>

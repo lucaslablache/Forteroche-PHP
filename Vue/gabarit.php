@@ -87,7 +87,7 @@
 
         </header>
         <div class="bg-bleu">
-            <section class="">
+            <section class="py-5">
                 <?= $contenu ?>
             </section>
 

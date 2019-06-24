@@ -1,5 +1,5 @@
 <?php $this->titre = "Forteroche - " . $billet['titre']; ?>
-    <div class="container bg-bleu">
+    <div class="container bg-bleu py-4>
         <!-- Chapitre -->
         <article class="col-lg-12 py-4">
             <header class="col-lg-12 bg-light">
@@ -23,18 +23,20 @@
             </li>
             <?php endforeach; ?>
         </ul>
-        <p>
+        <div class="container pt-3">
+        <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#commenter">Commenter !</button>
+        <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
+
+            <h3>Votre message</h3>
             <!--
-            dropdown + 2 champs + submit
-            $post['id'] = $billet['id']
-            bouton submit
+            fonction (php) pour récupérer l'url ptet 'get url'
             -->
 
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-8 control-label" for="pseudo">Votre pseudo</label>
                 <div class="col-md-6">
-                    <input id="pseudo" name="pseudo" type="text" placeholder="Pseudo" class="form-control input-md" required="">
+                    <input id="auteur" name="auteur" type="text" placeholder="Pseudo" class="form-control input-md" required="">
                 </div>
             </div>
 
@@ -42,17 +44,16 @@
             <div class="form-group">
                 <label class="col-md-8 control-label" for="Message">Votre Message</label>
                 <div class="col-md-12">
-                    <textarea id="Message" name="Message" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
+                    <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
                 </div>
             </div>
 
             <!-- Button -->
             <div class="form-group">
-                <label class="col-md-8 control-label" for="confirmation">Envoyer</label>
                 <div class="col-md-8">
-                    <button id="confirmation" name="confirmation" class="btn btn-success" action="commenter">Envoyer</button>
-                    <input type="hidden" id="id" value="<?=$billet['id']?>">
+                    <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Envoyer</button>
                 </div>
             </div>
-        </p>
+        </form>
+        </div>
     </div>

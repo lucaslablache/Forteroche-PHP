@@ -18,7 +18,8 @@ class Commentaire extends Modele
     {
         $sql = 'insert into T_COMMENTAIRE (COM_DATE, COM_AUTEUR, COM_CONTENU, BIL_ID)'
             . 'values(?, ?, ?, ?)';
-        $date = date(DATE_W3C);
+        $date = date("Y-m-d H:i:s");
+        //$date = date(DATE_W3C);
         $this->executerRequete($sql, array($date, $auteur, $contenu, $idBillet));
     }
 }

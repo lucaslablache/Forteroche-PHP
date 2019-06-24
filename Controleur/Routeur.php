@@ -20,28 +20,35 @@ class Routeur
         {
             if (isset($_GET['action']))
             {
-                if ($_GET['action'] == 'billet')
+                if (isset($_GET['id']))
                 {
                     $idBillet = intval($this->getParametre($_GET, 'id'));
                     if ($idBillet != 0)
                     {
-                        $this->ctrlBillet->billet($idBillet);
+                        if ($_GET['action'] == 'billet')
+                        {
+                            $this->ctrlBillet->billet($idBillet);
+                        }
+                        else if ($_GET['action'] == 'commenter')
+                        {
+                            $auteur = $this->getParametre($_POST, 'auteur');
+                            $contenu = $this->getParametre($_POST, 'contenu');
+                            $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
+                        }
+                        else
+                        {
+                            throw new Exception("action non valide");
+                        }
                     }
                     else
                     {
                         throw new Exception("Identifiant de billet non valide");
                     }
-                }
-                else if ($_GET['action'] == 'commenter')
-                {
-                    $auteur =$this->getParametre($_POST, 'auteur');
-                    $contenu =$this->getParametre($_POST, 'contenu');
-                    $idBillet =$this->getParametre($_POST, 'id');
-                    $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
+
                 }
                 else
                 {
-                    throw new Exception("action non valide");
+                    throw new Exception ("identifiant inexistant");
                 }
 
             }

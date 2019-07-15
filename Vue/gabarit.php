@@ -1,3 +1,11 @@
+<?php
+
+if (session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
+//session_destroy();
+?>
 <!DOCTYPE HTML>
 <html lang="fr">
 
@@ -5,7 +13,7 @@
     <meta charset="utf-8">
     <title>accueil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="Contenu/style_blog.css">
+    <link rel="stylesheet" href="./Contenu/style_blog.css">
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -18,7 +26,7 @@
     <div class="container">
 
         <header class="banner">
-            <img class="image image_banner" src="Contenu/AccueilAzu-01petit.jpg" alt="montagnes enneigées">
+            <img class="image image_banner" src="./Contenu/AccueilAzu-01petit.jpg" alt="montagnes enneigées">
 
             <!-- nav petits ecrans -->
             <div class="pos-f-t nav_banner burger">
@@ -34,18 +42,16 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sommaire</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Description de l'auteur</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Chapitre 1</a>
+                                    <a class="dropdown-item" href="<?= "index.php?action=billet&id=1"?>">Chapitre 1</a>
                                     <a class="dropdown-item" href="#">Chapitre 2</a>
                                     <a class="dropdown-item" href="#">Chapitre 3</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Inscription</a>
+                                <a class="nav-link text-light" href="#">Biographie</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Connexion</a>
+                                <a class="nav-link text-light" href="#">Administration</a>
                             </li>
                         </ul>
                     </div>
@@ -63,23 +69,21 @@
                     <a class="navbar-brand text-light" href="#">Jean Forteroche</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Accueil</a>
+                    <a class="nav-link active" href="<?= "index.php"?>">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sommaire</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Description de l'auteur</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Chapitre 1</a>
-                        <a class="dropdown-item" href="#">Chapitre 2</a>
-                        <a class="dropdown-item" href="#">Chapitre 3</a>
+                        <a class="dropdown-item" href="<?= "index.php?action=billet&id=1"?>">Chapitre 1</a>
+                        <a class="dropdown-item" href="<?= "index.php?action=billet&id=2"?>">Chapitre 2</a>
+                        <a class="dropdown-item" href="<?= "index.php?action=billet&id=3"?>">Chapitre 3</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Inscription</a>
+                    <a class="nav-link text-light" href="#">Biographie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Connexion</a>
+                    <a class="nav-link text-light" href="<?= "index.php?action=login" ?>">Administration</a>
                 </li>
             </ul>
 
@@ -88,6 +92,14 @@
         </header>
         <div class="bg-bleu">
             <section class="py-5">
+                <?php
+                if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin')
+                {
+                    ?>
+                    <p>vous etes co</p>
+                    <?php
+                }
+                ?>
                 <?= $contenu ?>
             </section>
 

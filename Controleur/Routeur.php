@@ -1,17 +1,20 @@
 <?php
 require_once 'Controleur/ControleurAccueil.php';
 require_once 'Controleur/ControleurBillet.php';
+require_once 'Controleur/ControleurLogin.php';
 require_once 'Vue/Vue.php';
 
 class Routeur
 {
     private $ctrlAccueil;
     private $ctrlBillet;
+    private $ctrlLogin;
 
     public function __construct()
     {
         $this->ctrlAccueil = new ControleurAccueil();
         $this->ctrlBillet = new ControleurBillet();
+        $this->ctrlLogin = new ControleurLogin();
     }
 
     public function routerRequete()
@@ -20,24 +23,27 @@ class Routeur
         {
             if (isset($_GET['action']))
             {
-                if (isset($_GET['id']))
+                if ($_GET['action'] == 'billet')
                 {
-                    $idBillet = intval($this->getParametre($_GET, 'id'));
-                    if ($idBillet != 0)
+                    if (isset($_GET['id']))
                     {
-                        if ($_GET['action'] == 'billet')
+                        $idBillet = intval($this->getParametre($_GET, 'id'));
+                        if ($idBillet != 0)
                         {
-                            $this->ctrlBillet->billet($idBillet);
-                        }
-                        else if ($_GET['action'] == 'commenter')
-                        {
-                            $auteur = $this->getParametre($_POST, 'auteur');
-                            $contenu = $this->getParametre($_POST, 'contenu');
-                            $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
-                        }
-                        else
-                        {
-                            throw new Exception("action non valide");
+                            if ($_GET['action'] == 'billet')
+                            {
+                                $this->ctrlBillet->billet($idBillet);
+                            }
+                            else if ($_GET['action'] == 'commenter')
+                            {
+                                $auteur = $this->getParametre($_POST, 'auteur');
+                                $contenu = $this->getParametre($_POST, 'contenu');
+                                $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
+                            }
+                            else
+                            {
+                                throw new Exception("action non valide");
+                            }
                         }
                     }
                     else
@@ -46,11 +52,20 @@ class Routeur
                     }
 
                 }
+                elseif ($_GET['action'] == 'login')
+                {
+                    $vue = new Vue("Login");
+                    $vue ->generer(array());
+                }
+                elseif ($_GET['action'] == 'try_login')
+                {
+                    $this->ctrlLogin->try_connect();
+                }
+
                 else
                 {
                     throw new Exception ("identifiant inexistant");
                 }
-
             }
             else
             {

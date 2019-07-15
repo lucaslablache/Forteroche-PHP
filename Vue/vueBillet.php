@@ -1,4 +1,9 @@
-<?php $this->titre = "Forteroche - " . $billet['titre']; ?>
+<?php
+if (session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
+$this->titre = "Forteroche - " . $billet['titre']; ?>
     <div class="container bg-bleu py-4>
         <!-- Chapitre -->
         <article class="col-lg-12 py-4">
@@ -20,6 +25,15 @@
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                     <?= $commentaire['contenu'] ?>
                 </div>
+                <?php
+                if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin')
+                {
+                    ?>
+                    <p>vous etes co</p>
+                    <?php
+                }
+                ?>
+
             </li>
             <?php endforeach; ?>
         </ul>
@@ -28,9 +42,7 @@
         <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
 
             <h3>Votre message</h3>
-            <!--
-            fonction (php) pour récupérer l'url ptet 'get url'
-            -->
+
 
             <!-- Text input-->
             <div class="form-group">

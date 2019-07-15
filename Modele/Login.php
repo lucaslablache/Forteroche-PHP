@@ -10,4 +10,9 @@ class Login extends Modele
         $passhash = $result->fetch();
         return password_verify($password,$passhash['pass']);
     }
+
+    public function isAdmin()
+    {
+        return (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin');
+    }
 }

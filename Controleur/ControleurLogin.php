@@ -15,14 +15,6 @@ class ControleurLogin
         $this->login = new Login();
     }
 
-    function est_connecte (): bool
-    {
-        if (session_status() == PHP_SESSION_NONE)
-        {
-            session_start();
-        }
-        return !empty($_SESSION['connecte']);
-    }
     //$2y$12$Je/ECVsXnVG6hIjyFAbfZuATKJDXp//hquhdOmHrSwp.i4.9h8S6K => 'dechevre' cout 12
 
 

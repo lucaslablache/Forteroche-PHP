@@ -30,7 +30,7 @@ class ControleurLogin
                     session_start();
                 }
                 $_SESSION['connecte'] = 'admin';
-                header('Location: /forteroche/index.php');
+                header('Location: /forteroche/index.php?action=admin');
 
             }
             else

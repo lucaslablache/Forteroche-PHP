@@ -13,6 +13,10 @@ class Login extends Modele
 
     public function isAdmin()
     {
+        if (session_status() == PHP_SESSION_NONE)
+        {
+            session_start();
+        }
         return (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin');
     }
 }

@@ -2,6 +2,7 @@
 require_once 'Controleur/ControleurAccueil.php';
 require_once 'Controleur/ControleurBillet.php';
 require_once 'Controleur/ControleurLogin.php';
+require_once 'Controleur/ControleurAdmin.php';
 require_once 'Vue/Vue.php';
 
 class Routeur
@@ -9,12 +10,14 @@ class Routeur
     private $ctrlAccueil;
     private $ctrlBillet;
     private $ctrlLogin;
+    private $ctrlAdmin;
 
     public function __construct()
     {
         $this->ctrlAccueil = new ControleurAccueil();
         $this->ctrlBillet = new ControleurBillet();
         $this->ctrlLogin = new ControleurLogin();
+        $this->ctrlAdmin = new ControleurAdmin();
     }
 
     public function routerRequete()
@@ -60,6 +63,10 @@ class Routeur
                 elseif ($_GET['action'] == 'try_login')
                 {
                     $this->ctrlLogin->try_connect();
+                }
+                elseif ($_GET['action'] == 'admin')
+                {
+                    $this->ctrlAdmin->admin();
                 }
 
                 else

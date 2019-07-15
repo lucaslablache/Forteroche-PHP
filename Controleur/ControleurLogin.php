@@ -1,11 +1,20 @@
 <?php
 require_once 'Vue/Vue.php';
+require_once 'Modele/Login.php';
 
 // IMPORTANT hasher le password
 // et le stocker dans la BDD
 
 class ControleurLogin
 {
+
+    private $login;
+
+    public function __construct()
+    {
+        $this->login = new Login();
+    }
+
     function est_connecte (): bool
     {
         if (session_status() == PHP_SESSION_NONE)
@@ -14,13 +23,14 @@ class ControleurLogin
         }
         return !empty($_SESSION['connecte']);
     }
+    //$2y$12$Je/ECVsXnVG6hIjyFAbfZuATKJDXp//hquhdOmHrSwp.i4.9h8S6K => 'dechevre' cout 12
 
 
     function try_connect ()
     {
         if (!empty($_POST['pseudo']) && !empty($_POST['password']))
         {
-            if ($_POST['pseudo'] == 'Fromage' && $_POST['password'] == 'dechevre')
+            if ($this->login->isPasswordCorrect($_POST['pseudo'],$_POST['password']))
             {
                 //on connecte l'admin
                 if (session_status() == PHP_SESSION_NONE)

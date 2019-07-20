@@ -17,3 +17,20 @@ $this->titre = "Blog Forteroche";// titre a modifier
     </div>
     </article>
 <?php endforeach; ?>
+
+
+
+
+<FORM>
+    <SELECT name="nom" size="1">
+        <OPTION>lundi
+        <OPTION>mardi
+        <OPTION>mercredi
+        <OPTION>jeudi
+        <OPTION>vendredi
+    </SELECT>
+</FORM>
+
+submit
+=> mercredi
+

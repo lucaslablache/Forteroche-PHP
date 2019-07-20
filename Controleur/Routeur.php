@@ -70,7 +70,16 @@ class Routeur
                 }
                 elseif ($_GET['action'] == 'addBillet')
                 {
-                    $this->ctrlAdmin->writeBillet($_POST['titre'],$_POST['contenu']);
+                    $this->ctrlAdmin->writeBillet($_POST['titre'], $_POST['contenu']);
+                }
+                elseif ($_GET['action'] == 'editBillet')
+                {
+                    print_r($_POST);
+                    $this->ctrlAdmin->editBillet($_POST['id']);
+                }
+                elseif ($_GET['action'] == 'updateBillet')
+                {
+                    $this->ctrlAdmin->processUpdateBillet($_POST['id'], $_POST['titre'], $_POST['contenu']);
                 }
 
                 else

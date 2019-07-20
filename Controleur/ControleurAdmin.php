@@ -11,6 +11,7 @@ class ControleurAdmin
     public function __construct()
     {
         $this->login = new Login();
+        $this->billet = new Billet();
     }
 
     public function admin()
@@ -25,8 +26,10 @@ class ControleurAdmin
 
         if ($this->login->isAdmin())
         {
+            $billetsPDO = $this->billet->getBillets();
+            $billets = $billetsPDO->fetchAll();
             $vue = new Vue("Admin");
-            $vue->generer(array());
+            $vue->generer(array('billets' => $billets));
         }
         else
         {
@@ -41,8 +44,31 @@ class ControleurAdmin
             //ajout du billet
             $this->billet->addBillet($titreBillet, $contenuBillet);
             //actualisation
-            $this->lastCreated();
+            $billet = $this->billet->getLastCreated();
+            header('Location: /forteroche/index.php?action=billet&id='.$billet['id']);
 
+        }
+        else
+        {
+            header('Location: /forteroche/index.php?action=login');
+        }
+    }
+
+    public function editBillet($idbillet)
+    {
+        $billet = $this->billet->getBillet($idbillet);
+        $vue = new Vue("Edition");
+        $vue->generer(array('billet' => $billet));
+    }
+
+    public function processUpdateBillet($id, $titre, $contenu)
+    {
+        if ($this->login->isAdmin())
+        {
+            //modification du billet
+            $this->billet->updateBillet($id, $titre, $contenu);
+            //actualisation
+            header('Location: /forteroche/index.php?action=billet&id='.$id);
         }
         else
         {

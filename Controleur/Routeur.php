@@ -68,6 +68,10 @@ class Routeur
                 {
                     $this->ctrlAdmin->admin();
                 }
+                elseif ($_GET['action'] == 'addBillet')
+                {
+                    $this->ctrlAdmin->writeBillet($_POST['titre'],$_POST['contenu']);
+                }
 
                 else
                 {

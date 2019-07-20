@@ -35,6 +35,8 @@ class Billet extends Modele
         }
 
     }
+
+    //recupération du nombre de commentaires
     public function getCommentairesCount($idBillet)
     {
         $sql = 'select * from T_COMMENTAIRE where BIL_ID=?';
@@ -42,4 +44,31 @@ class Billet extends Modele
         $commentaires = $commentaireCount->fetchAll();
         return count($commentaires);
     }
+
+    //ajout d'un billet
+    public function addBillet($titreBillet, $contenuBillet)
+    {
+        $sql = 'insert into T_BILLET (BIL_DATE, BIL_TITRE, BIL_CONTENU)'
+                . 'values(?, ?, ?)';
+        $date = date("Y-m-d H:i:s");
+        $this->executerRequete($sql, array($date, $titreBillet, $contenuBillet));
+    }
+
+    //mise a jkour d'un Billet
+    public function updateBillet($idBillet, $titreBillet, $contenuBillet)
+    {
+        $sql = 'UPDATE T_BILLET SET BIL_DATE = ?, BIL_TITRE = ?, BIL_CONTENU = ?'
+            . 'WHERE BIL_ID = ?';
+        $date = date("Y-m-d H:i:s");
+        $this->executerRequete($sql, array($date, $titreBillet, $contenuBillet,$idBillet));
+    }
+
+    // récupération du dernier billet entré
+    public function getLastCreated()
+    {
+        $sql = 'select * from T_BILLET order by BIL_ID LIMIT 1';
+        $lastCreated=$this->executerRequete($sql, array());
+        return $lastCreated->fetch();
+    }
+
 }

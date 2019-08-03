@@ -5,6 +5,12 @@ class Login extends Modele
 {
     public function isPasswordCorrect($user,$password)
     {
+        //$user=$this->test_input($user);
+
+        //Vérification des entrées utilisateur
+        $user=$this->clear_string($user);
+        $password=$this->clear_string($password);
+
         $sql = 'select LOG_PASS as pass from t_login where LOG_USER=?';
         $result = $this->executerRequete($sql, array($user));
         $passhash = $result->fetch();

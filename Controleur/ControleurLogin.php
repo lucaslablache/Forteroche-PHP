@@ -2,8 +2,6 @@
 require_once 'Vue/Vue.php';
 require_once 'Modele/Login.php';
 
-// IMPORTANT hasher le password
-// et le stocker dans la BDD
 
 class ControleurLogin
 {
@@ -14,9 +12,6 @@ class ControleurLogin
     {
         $this->login = new Login();
     }
-
-    //$2y$12$Je/ECVsXnVG6hIjyFAbfZuATKJDXp//hquhdOmHrSwp.i4.9h8S6K => 'dechevre' cout 12
-
 
     function try_connect ()
     {
@@ -39,4 +34,5 @@ class ControleurLogin
             }
         }
     }
+
 }

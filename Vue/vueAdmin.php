@@ -54,5 +54,9 @@
     </header>
     <p class="col-lg-12 bg-light">
         simple bouton qui nous deconnecte
+    <form action="/forteroche/index.php?action=disconnect">
+        <button class="btn btn-success" type="submit">Déconnection</button>
+    </form>
+    <a href="/forteroche/index.php?action=disconnect">Déco</a>
     </p>
 </article>

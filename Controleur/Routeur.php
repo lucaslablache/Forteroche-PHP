@@ -57,8 +57,15 @@ class Routeur
                 }
                 elseif ($_GET['action'] == 'login')
                 {
-                    $vue = new Vue("Login");
-                    $vue ->generer(array());
+                    if ($this->isAdmin())
+                    {
+                       header('Location: /forteroche/index.php?action=admin');
+                    }
+                    else
+                    {
+                        $vue = new Vue("Login");
+                        $vue ->generer(array());
+                    }
                 }
                 elseif ($_GET['action'] == 'try_login')
                 {
@@ -66,20 +73,52 @@ class Routeur
                 }
                 elseif ($_GET['action'] == 'admin')
                 {
-                    $this->ctrlAdmin->admin();
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->admin();
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
                 }
                 elseif ($_GET['action'] == 'addBillet')
                 {
-                    $this->ctrlAdmin->writeBillet($_POST['titre'], $_POST['contenu']);
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->writeBillet($_POST['titre'], $_POST['contenu']);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
                 }
                 elseif ($_GET['action'] == 'editBillet')
                 {
-                    print_r($_POST);
-                    $this->ctrlAdmin->editBillet($_POST['id']);
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->editBillet($_POST['id']);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
                 }
                 elseif ($_GET['action'] == 'updateBillet')
                 {
-                    $this->ctrlAdmin->processUpdateBillet($_POST['id'], $_POST['titre'], $_POST['contenu']);
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->processUpdateBillet($_POST['id'], $_POST['titre'], $_POST['contenu']);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+
+                }
+                elseif ($_GET['action'] == 'disconnect')
+                {
+                    $this->ctrlAdmin->disconnect();
                 }
 
                 else
@@ -114,5 +153,14 @@ class Routeur
         {
             throw new Exception("parametre '$nom' absent");
         }
+    }
+
+    public function isAdmin()
+    {
+        if (session_status() == PHP_SESSION_NONE)
+        {
+            session_start();
+        }
+        return (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin');
     }
 }

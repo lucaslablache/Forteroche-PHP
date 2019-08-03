@@ -35,6 +35,7 @@ class ControleurBillet
         $this->billet($idBillet);
     }
 
+    //récupération et affichage du dernier billet entré dans la BDD
     public function lastCreated()
     {
         $billet = $this->billet->getLastCreated();

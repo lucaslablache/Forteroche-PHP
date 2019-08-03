@@ -16,42 +16,26 @@ class ControleurAdmin
 
     public function admin()
     {
-        // alertes boostrap pour la modération
-        // protection utilisateur
-        // sanitise field (ancien)
-        // utiliser https://www.php.net/manual/en/mysqli.real-escape-string.php
-        // htmlspecial chars pour html
+        $billetsPDO = $this->billet->getBillets();
+        $billets = $billetsPDO->fetchAll();
+        $vue = new Vue("Admin");
+        $vue->generer(array('billets' => $billets));
+    }
 
-        // tiny MCE documenter
-
-        if ($this->login->isAdmin())
-        {
-            $billetsPDO = $this->billet->getBillets();
-            $billets = $billetsPDO->fetchAll();
-            $vue = new Vue("Admin");
-            $vue->generer(array('billets' => $billets));
-        }
-        else
-        {
-            header('Location: /forteroche/index.php?action=login');
-        }
+    public function disconnect()
+    {
+        var_dump(session_status());
+        session_unset();
+        session_destroy();
     }
 
     public function writeBillet($titreBillet, $contenuBillet)
     {
-        if ($this->login->isAdmin())
-        {
-            //ajout du billet
-            $this->billet->addBillet($titreBillet, $contenuBillet);
-            //actualisation
-            $billet = $this->billet->getLastCreated();
-            header('Location: /forteroche/index.php?action=billet&id='.$billet['id']);
-
-        }
-        else
-        {
-            header('Location: /forteroche/index.php?action=login');
-        }
+        //ajout du billet
+        $this->billet->addBillet($titreBillet, $contenuBillet);
+        //actualisation
+        $billet = $this->billet->getLastCreated();
+        header('Location: /forteroche/index.php?action=billet&id='.$billet['id']);
     }
 
     public function editBillet($idbillet)
@@ -63,16 +47,10 @@ class ControleurAdmin
 
     public function processUpdateBillet($id, $titre, $contenu)
     {
-        if ($this->login->isAdmin())
-        {
-            //modification du billet
-            $this->billet->updateBillet($id, $titre, $contenu);
-            //actualisation
-            header('Location: /forteroche/index.php?action=billet&id='.$id);
-        }
-        else
-        {
-            header('Location: /forteroche/index.php?action=login');
-        }
+        //modification du billet
+        $this->billet->updateBillet($id, $titre, $contenu);
+        //actualisation
+        header('Location: /forteroche/index.php?action=billet&id='.$id);
     }
+
 }

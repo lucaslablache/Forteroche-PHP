@@ -48,15 +48,23 @@ class Billet extends Modele
     //ajout d'un billet
     public function addBillet($titreBillet, $contenuBillet)
     {
+        //vérification des entrées utilisateur
+        $titreBillet=$this->clear_string($titreBillet);
+        $contenuBillet=$this->clear_string($contenuBillet);
+
         $sql = 'insert into T_BILLET (BIL_DATE, BIL_TITRE, BIL_CONTENU)'
                 . 'values(?, ?, ?)';
         $date = date("Y-m-d H:i:s");
         $this->executerRequete($sql, array($date, $titreBillet, $contenuBillet));
     }
 
-    //mise a jkour d'un Billet
+    //mise a jour d'un Billet
     public function updateBillet($idBillet, $titreBillet, $contenuBillet)
     {
+        //vérification des entrées utilisateur
+        $titreBillet=$this->clear_string($titreBillet);
+        $contenuBillet=$this->clear_string($contenuBillet);
+
         $sql = 'UPDATE T_BILLET SET BIL_DATE = ?, BIL_TITRE = ?, BIL_CONTENU = ?'
             . 'WHERE BIL_ID = ?';
         $date = date("Y-m-d H:i:s");

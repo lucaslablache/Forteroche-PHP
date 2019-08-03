@@ -30,4 +30,13 @@ abstract class Modele
 		}
 		return $this->bdd;
 	}
+
+	//Fonction de vérification des entrées utilisateur
+    function clear_string($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 }

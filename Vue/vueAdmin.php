@@ -15,8 +15,6 @@
                 <input id="titre" name="titre" type="text" placeholder="Titre" class="form-control input-md" required="">
             </div>
         </div>
-
-        <!-- Text input a changer (text area)-->
         <div class="form-group">
             <label class="col-md-8 control-label" for="contenu">Contenu</label>
             <div class="col-md-12">
@@ -47,6 +45,14 @@
         </select>
         <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Selectionner</button>
     </form>
+    </p>
+
+    <header class="col-lg-12 bg-light">
+        <h1 class="titreBillet">action  (modérer commentaires)</h1>
+    </header>
+    <p class="col-lg-12 bg-light">
+        Redirection vers une page de modération des commentaires
+        <a href="/forteroche/index.php?action=moderation">MODERATION</a>
     </p>
 
     <header class="col-lg-12 bg-light">

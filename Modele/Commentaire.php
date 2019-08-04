@@ -32,13 +32,15 @@ class Commentaire extends Modele
     //
     public function setCommentaireSupprime($idCommentaire)
     {
-        //$sql =
+        $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 3 WHERE COM_ID = ?';
+        $this->executerRequete($sql, array($idCommentaire));
     }
 
     //
     public function setCommentaireValide($idCommentaire)
     {
-        //$sql =
+        $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 2 WHERE COM_ID = ?';
+        $this->executerRequete($sql, array($idCommentaire));
     }
 
     // Ajoute un commentaire dans la BDD
@@ -62,6 +64,14 @@ class Commentaire extends Modele
         $idBilletPDO = $this->executerRequete($sql, array($idCommentaire));
         $requestResult = $idBilletPDO->fetch();
         return $requestResult['bil_id'];
+    }
+
+    public function getCommentairesFromBillet($idBillet)
+    {
+        $sql = 'SELECT COM_ID as id, COM_DATE as date, COM_AUTEUR as auteur,'
+            . 'COM_CONTENU as contenu, COM_STATUT as statut FROM T_COMMENTAIRE where BIL_ID=?';
+        $commentairesPDO = $this->executerRequete($sql,array($idBillet));
+        return $commentairesPDO;
     }
 
     // com statut

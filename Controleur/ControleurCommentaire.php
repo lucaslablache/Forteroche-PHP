@@ -21,6 +21,18 @@ class ControleurCommentaire
         //redirection
         header('Location: /forteroche/index.php?action=billet&id='.$idBillet);
     }
-
-
+    public function validerCommentaire($idCommentaire)
+    {
+        $this->commentaire->setCommentaireValide($idCommentaire);
+        $idBillet = $this->commentaire->getBilletId($idCommentaire);
+        //redirection
+        header('Location: /forteroche/index.php?action=moderation');
+    }
+    public function supprimerCommentaire($idCommentaire)
+    {
+        $this->commentaire->setCommentaireSupprime($idCommentaire);
+        $idBillet = $this->commentaire->getBilletId($idCommentaire);
+        //redirection
+        header('Location: /forteroche/index.php?action=moderation');
+    }
 }

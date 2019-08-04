@@ -2,16 +2,19 @@
 require_once 'Vue/Vue.php';
 require_once 'Modele/Login.php';
 require_once 'Modele/Billet.php';
+require_once 'Modele/Commentaire.php';
 
 class ControleurAdmin
 {
     private $login;
     private $billet;
+    private $commentaire;
 
     public function __construct()
     {
         $this->login = new Login();
         $this->billet = new Billet();
+        $this->commentaire = new Commentaire();
     }
 
     public function admin()
@@ -53,6 +56,19 @@ class ControleurAdmin
         $this->billet->updateBillet($id, $titre, $contenu);
         //actualisation
         header('Location: /forteroche/index.php?action=billet&id='.$id);
+    }
+
+    public function moderationCommentaires()
+    {
+        $PDObillets = $this->billet->getBillets();
+        $billets = $PDObillets->fetchAll();
+        $commentaires = [];
+        foreach ($billets as $billet)
+        {
+            $commentaires += [ $billet['id'] => $this->commentaire->getCommentairesFromBillet($billet['id'])->fetchAll()];
+        }
+        $vue = new Vue("Moderation");
+        $vue->generer(array('billets' => $billets,'commentaires' => $commentaires));
     }
 
 }

@@ -90,6 +90,41 @@ class Routeur
                         header('Location: /forteroche/index.php?action=login');
                     }
                 }
+                elseif ($_GET['action'] == 'moderation')
+                {
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->moderationCommentaires();
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+                }
+                elseif ($_GET['action'] == 'validerComm')
+                {
+                    if ($this->isAdmin())
+                    {
+                        $idCommentaire = $this->getParametre($_POST, 'id');
+                        $this->ctrlCommentaire->validerCommentaire($idCommentaire);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+                }
+                elseif ($_GET['action'] == 'supprimerComm')
+                {
+                    if ($this->isAdmin())
+                    {
+                        $idCommentaire = $this->getParametre($_POST, 'id');
+                        $this->ctrlCommentaire->supprimerCommentaire($idCommentaire);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+                }
                 elseif ($_GET['action'] == 'addBillet')
                 {
                     if ($this->isAdmin())

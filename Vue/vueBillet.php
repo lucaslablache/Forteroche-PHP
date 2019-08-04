@@ -25,55 +25,62 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                     <?= $commentaire['contenu'] ?>
                 </div>
-                <?php
-                if ($commentaire['statut'] == 1)
-                {
-                    ?>
-                    <p>Commentaire signalé</p>
+                <div>
                     <?php
-                }
-                else
-                {
+                    if ($commentaire['statut'] == 1)
+                    {
+                        ?>
+                        <p>Commentaire signalé</p>
+                        <?php
+                    }
+                    elseif ($commentaire['statut'] == 2)
+                    {
+                        ?>
+                        <p>Commentaire validé</p>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <form action="/forteroche/index.php?action=signaler" method="post">
+                            <button class="btn btn-success" type="submit" name="id" value="<?= $commentaire['id'] ?>">Signaler</button>
+                        </form>
+                        <?php
+                    }
                     ?>
-                    <form action="/forteroche/index.php?action=signaler" method="post">
-                        <button class="btn btn-success" type="submit" name="id" value="<?= $commentaire['id'] ?>">Signaler</button>
-                    </form>
-                    <?php
-                }
-                ?>
-
+                </div>
             </li>
             <?php endforeach; ?>
         </ul>
         <div class="container pt-3">
-        <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#commenter">Commenter !</button>
-        <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
+            <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#commenter">Commenter !</button>
+            <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
 
-            <h3>Votre message</h3>
+                <h3>Votre message</h3>
 
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-8 control-label" for="pseudo">Votre pseudo</label>
-                <div class="col-md-6">
-                    <input id="auteur" name="auteur" type="text" placeholder="Pseudo" class="form-control input-md" required="">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="pseudo">Votre pseudo</label>
+                    <div class="col-md-6">
+                        <input id="auteur" name="auteur" type="text" placeholder="Pseudo" class="form-control input-md" required="">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Text input a changer (text area)-->
-            <div class="form-group">
-                <label class="col-md-8 control-label" for="Message">Votre Message</label>
-                <div class="col-md-12">
-                    <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
+                <!-- Text input a changer (text area)-->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="Message">Votre Message</label>
+                    <div class="col-md-12">
+                        <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Button -->
-            <div class="form-group">
-                <div class="col-md-8">
-                    <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Envoyer</button>
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Envoyer</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
         </div>
     </div>

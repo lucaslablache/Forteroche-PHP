@@ -3,15 +3,42 @@ require_once 'Modele/Modele.php';
 
 class Commentaire extends Modele
 {
-
     //renvoie la liste des commentaires associés a un billet spécifique
     public function getCommentaires($idBillet)
     {
         $sql = 'select COM_ID as id, COM_DATE as date, COM_AUTEUR as auteur,'
         . 'COM_CONTENU as contenu from T_COMMENTAIRE where BIL_ID=?';
-        //AND where bil_stat!=X;
         $commentaires = $this->executerRequete($sql, array($idBillet));
         return $commentaires;
+    }
+
+    // renvoie la liste des commentaires validés par l'administrateur
+    public function getCommentairesValides ($idBillet)
+    {
+        $sql = 'select COM_ID as id, COM_DATE as date, COM_AUTEUR as auteur,'
+            . 'COM_CONTENU as contenu, COM_STATUT as statut from T_COMMENTAIRE where BIL_ID=?'
+            . 'AND COM_STATUT != 3';
+        $commentaires = $this->executerRequete($sql, array($idBillet));
+        return $commentaires;
+    }
+
+    //
+    public function setCommentaireSignale($idCommentaire)
+    {
+        $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 1 WHERE COM_ID = ?';
+        $this->executerRequete($sql, array($idCommentaire));
+    }
+
+    //
+    public function setCommentaireSupprime($idCommentaire)
+    {
+        //$sql =
+    }
+
+    //
+    public function setCommentaireValide($idCommentaire)
+    {
+        //$sql =
     }
 
     // Ajoute un commentaire dans la BDD
@@ -21,11 +48,31 @@ class Commentaire extends Modele
         $auteur=$this->clear_string($auteur);
         $contenu=$this->clear_string($contenu);
 
-        $sql = 'insert into T_COMMENTAIRE (COM_DATE, COM_AUTEUR, COM_CONTENU, BIL_ID)'
-            . 'values(?, ?, ?, ?)';
+        $sql = 'insert into T_COMMENTAIRE (COM_DATE, COM_AUTEUR, COM_CONTENU, COM_STATUT, BIL_ID)'
+            . 'values(?, ?, ?, ?, ?)';
         $date = date("Y-m-d H:i:s");
         //$date = date(DATE_W3C);
-        $this->executerRequete($sql, array($date, $auteur, $contenu, $idBillet));
+        $comstatut=0; //on donne le statut 'crée' au commentaire
+        $this->executerRequete($sql, array($date, $auteur, $contenu, $comstatut, $idBillet));
     }
+
+    public function getBilletId($idCommentaire)
+    {
+        $sql = 'SELECT BIL_ID as bil_id FROM T_COMMENTAIRE where COM_ID=?';
+        $idBilletPDO = $this->executerRequete($sql, array($idCommentaire));
+        $requestResult = $idBilletPDO->fetch();
+        return $requestResult['bil_id'];
+    }
+
+    // com statut
+    // 0 = crée
+    // 1 = signalé
+    // 2 = validé
+    // 3 = supprimé
+
+    //define("COM_CREATED" , 0);
+    //define("COM_SIGNALED" , 1);
+    //define("COM_CHECKED" , 2);
+    //define("COM_DELETED" , 3);
 
 }

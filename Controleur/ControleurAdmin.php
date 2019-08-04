@@ -24,9 +24,11 @@ class ControleurAdmin
 
     public function disconnect()
     {
+        session_start();
         var_dump(session_status());
         session_unset();
         session_destroy();
+        header('Location: /forteroche/index.php');
     }
 
     public function writeBillet($titreBillet, $contenuBillet)

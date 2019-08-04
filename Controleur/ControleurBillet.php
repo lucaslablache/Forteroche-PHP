@@ -17,11 +17,10 @@ class ControleurBillet
     }
 
     //affichage du billet
-
     public function billet($idBillet)
     {
         $billet = $this->billet->getBillet($idBillet);
-        $commentaires = $this->commentaire->getCommentaires($idBillet);
+        $commentaires = $this->commentaire->getCommentairesValides($idBillet);
         $vue = new Vue("Billet");
         $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
     }

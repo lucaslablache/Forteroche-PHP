@@ -26,10 +26,18 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                     <?= $commentaire['contenu'] ?>
                 </div>
                 <?php
-                if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin')
+                if ($commentaire['statut'] == 1)
                 {
                     ?>
-                    <p>vous etes co</p>
+                    <p>Commentaire signalé</p>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <form action="/forteroche/index.php?action=signaler" method="post">
+                        <button class="btn btn-success" type="submit" name="id" value="<?= $commentaire['id'] ?>">Signaler</button>
+                    </form>
                     <?php
                 }
                 ?>

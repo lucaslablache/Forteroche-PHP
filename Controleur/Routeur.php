@@ -3,6 +3,7 @@ require_once 'Controleur/ControleurAccueil.php';
 require_once 'Controleur/ControleurBillet.php';
 require_once 'Controleur/ControleurLogin.php';
 require_once 'Controleur/ControleurAdmin.php';
+require_once 'Controleur/ControleurCommentaire.php';
 require_once 'Vue/Vue.php';
 
 class Routeur
@@ -11,6 +12,7 @@ class Routeur
     private $ctrlBillet;
     private $ctrlLogin;
     private $ctrlAdmin;
+    private $ctrlCommentaire;
 
     public function __construct()
     {
@@ -18,6 +20,7 @@ class Routeur
         $this->ctrlBillet = new ControleurBillet();
         $this->ctrlLogin = new ControleurLogin();
         $this->ctrlAdmin = new ControleurAdmin();
+        $this->ctrlCommentaire = new ControleurCommentaire();
     }
 
     public function routerRequete()
@@ -54,6 +57,11 @@ class Routeur
                         throw new Exception("Identifiant de billet non valide");
                     }
 
+                }
+                elseif ($_GET['action'] == 'signaler')
+                {
+                    $idCommentaire = $this->getParametre($_POST, 'id');
+                    $this->ctrlCommentaire->signalerCommentaire($idCommentaire);
                 }
                 elseif ($_GET['action'] == 'login')
                 {

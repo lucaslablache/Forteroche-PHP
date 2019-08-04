@@ -93,14 +93,6 @@ if (session_status() == PHP_SESSION_NONE)
         </header>
         <div class="bg-bleu">
             <section class="py-5">
-                <?php
-                if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['connecte']) && $_SESSION['connecte'] == 'admin')
-                {
-                    ?>
-                    <p>vous etes co</p>
-                    <?php
-                }
-                ?>
                 <?= $contenu ?>
             </section>
 

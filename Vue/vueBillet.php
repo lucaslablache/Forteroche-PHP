@@ -4,46 +4,48 @@ if (session_status() == PHP_SESSION_NONE)
     session_start();
 }
 $this->titre = "Forteroche - " . $billet['titre']; ?>
-    <div class="container bg-bleu py-4>
+    <div class="container bg-bleu">
         <!-- Chapitre -->
         <article class="col-lg-12 py-4">
             <header class="col-lg-12 bg-light">
                 <h1><?= $billet['titre'] ?></h1>
             </header>
-            <p class="col-lg-12 bg-light">
+            <div class="col-lg-12 bg-light">
                 <?= $billet['contenu'] ?>
-            </p>
+            </div>
         </article>
 
         <!-- Commentaires -->
 
         <ul class="list-unstyled">
             <?php foreach ($commentaires as $commentaire): ?>
-            <li class="media py-4">
-                <img class="mr-3 avatar" src="Contenu/avatar.jpg" alt="Generic placeholder image">
-                <div class="media-body bg-light">
+            <li class="media py-4 row">
+                <div class="mr-3 col-2 col-md-1 d-none d-sm-block px-0">
+                    <img class="img-fluid"  src="Contenu/avatar.jpg" alt="Generic placeholder image">
+                </div>
+                <div class="media-body bg-light col-10 col-md-9">
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                     <?= $commentaire['contenu'] ?>
                 </div>
-                <div>
+                <div class="col-1 m-auto">
                     <?php
                     if ($commentaire['statut'] == 1)
                     {
                         ?>
-                        <p>Commentaire signalé</p>
+                        <i class="fas fa-exclamation-triangle text-danger fa-2x"></i>
                         <?php
                     }
                     elseif ($commentaire['statut'] == 2)
                     {
                         ?>
-                        <p>Commentaire validé</p>
+                        <i class="fas fa-check text-success fa-2x"></i>
                         <?php
                     }
                     else
                     {
                         ?>
                         <form action="/forteroche/index.php?action=signaler" method="post">
-                            <button class="btn btn-success" type="submit" name="id" value="<?= $commentaire['id'] ?>">Signaler</button>
+                            <button class="btn btn-warning" type="submit" name="id" value="<?= $commentaire['id'] ?>"><span class="fas fa-exclamation"></span></button>
                         </form>
                         <?php
                     }
@@ -52,14 +54,12 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
             </li>
             <?php endforeach; ?>
         </ul>
-        <div class="container pt-3">
+        <div class="container py-2">
             <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#commenter">Commenter !</button>
             <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
 
                 <h3>Votre message</h3>
-
-
-                <!-- Text input-->
+                <!-- Pseudo-->
                 <div class="form-group">
                     <label class="col-md-8 control-label" for="pseudo">Votre pseudo</label>
                     <div class="col-md-6">
@@ -67,7 +67,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                     </div>
                 </div>
 
-                <!-- Text input a changer (text area)-->
+                <!-- Message-->
                 <div class="form-group">
                     <label class="col-md-8 control-label" for="Message">Votre Message</label>
                     <div class="col-md-12">
@@ -76,7 +76,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                 </div>
 
                 <!-- Button -->
-                <div class="form-group">
+                <div class="form-group mb-0 pb-2">
                     <div class="col-md-8">
                         <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Envoyer</button>
                     </div>

@@ -1,65 +1,83 @@
 <?php ?>
 <article class="col-lg-12">
-    <header class="col-lg-12 bg-light">
-        <h1 class="titreBillet">action 1 (ajouter billet)</h1>
-    </header>
-    <p class="col-lg-12 bg-light">
-        <!-- formulaire pour un nouveau billet -->
-    <form action="/forteroche/index.php?action=addBillet" method="post" id="commenter">
+    <!-- Ajouter un billet -->
+    <div class="pb-4">
+        <header class="col-lg-12 bg-light">
+            <h1 class="titreBillet">Créez votre nouveau chapitre</h1>
+        </header>
+        <div class="col-lg-12 bg-light">
+            <!-- formulaire pour un nouveau billet -->
+            <form action="/forteroche/index.php?action=addBillet" method="post" id="commenter">
 
-        <h3>Votre Nouveau chapitre</h3>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-8 control-label" for="titre">Titre</label>
-            <div class="col-md-6">
-                <input id="titre" name="titre" type="text" placeholder="Titre" class="form-control input-md" required="">
-            </div>
+                <h3>Votre Nouveau chapitre</h3>
+
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="titre">Titre</label>
+                    <div class="col-md-6">
+                        <input id="myeditable-h1" name="titre" type="text" placeholder="Titre" class="form-control input-md">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="contenu">Contenu</label>
+                    <div class="col-md-12">
+                        <textarea id="myeditable-div" name="contenu" type="text" placeholder="Votre chapitre" class="form-control input-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- Confirmation -->
+                <div class="form-group">
+                    <div class="col-md-2 offset-md-5">
+                        <button id="confirmation" name="confirmation" class="btn btn-success col-sm-12" type="submit">Poster</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label class="col-md-8 control-label" for="contenu">Contenu</label>
-            <div class="col-md-12">
-                <textarea id="Contenu" name="contenu" type="text" placeholder="Votre chapitre" class="form-control input-md" required=""></textarea>
-            </div>
+    </div>
+
+    <!-- Modifier un billet -->
+    <div class="pb-4">
+        <header class="col-lg-12 bg-light">
+            <h1 class="titreBillet">Modifier un billet existant</h1>
+        </header>
+        <div class="col-lg-12 bg-light">
+            <p>
+                Sélectionnez le chapitre a modifier
+            </p>
+            <form action="/forteroche/index.php?action=editBillet" method="post">
+                <select name="id" id="id" class="mb-3 col-sm-12">
+                    <?php foreach ($billets as $billet): ?>
+                    <option value="<?= $billet['id']?>"><?= $billet['titre'] ?>
+                    <?php endforeach; ?>
+                </select>
+                <button id="confirmation" name="confirmation" class="btn btn-success col-sm-12 col-md-2 offset-md-5" type="submit">Selectionner</button>
+            </form>
         </div>
+    </div>
 
-        <!-- Button -->
-        <div class="form-group">
-            <div class="col-md-8">
-                <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Envoyer</button>
-            </div>
+    <!-- Modération des commentaires -->
+    <div class="pb-4">
+        <header class="col-lg-12 bg-light">
+            <h1 class="titreBillet">Modérer les commentaires</h1>
+        </header>
+        <div class="col-lg-12 bg-light">
+            <p class="my-2 col-sm-12">
+                Redirection vers une page de modération des commentaires
+            </p>
+
+            <a href="/forteroche/index.php?action=moderation" class="btn btn-info col-sm-12 col-md-2 offset-md-5" role="button">MODERATION</a>
         </div>
-    </form>
-        details (formulaire pour entrer les données)
-    </p>
+    </div>
 
-    <header class="col-lg-12 bg-light">
-        <h1 class="titreBillet">action 2 (modifier billet)</h1>
-    </header>
-    <p class="col-lg-12 bg-light">
-        details (formulaire pour entrer les données + menu déroulant pour selectionner le billet)
-    <form action="/forteroche/index.php?action=editBillet" method="post">
-        <select name="id" id="id">
-            <?php foreach ($billets as $billet): ?>
-            <option value="<?= $billet['id']?>"><?= $billet['titre'] ?>
-            <?php endforeach; ?>
-        </select>
-        <button id="confirmation" name="confirmation" class="btn btn-success" type="submit">Selectionner</button>
-    </form>
-    </p>
-
-    <header class="col-lg-12 bg-light">
-        <h1 class="titreBillet">action  (modérer commentaires)</h1>
-    </header>
-    <p class="col-lg-12 bg-light">
-        Redirection vers une page de modération des commentaires
-        <a href="/forteroche/index.php?action=moderation">MODERATION</a>
-    </p>
-
-    <header class="col-lg-12 bg-light">
-        <h1 class="titreBillet">action 3 (déconnection)</h1>
-    </header>
-    <p class="col-lg-12 bg-light">
-        simple bouton qui nous deconnecte
-    <a href="/forteroche/index.php?action=disconnect">Déco</a>
-    </p>
+    <!-- Déconnection -->
+    <div class="pb-4">
+        <header class="col-lg-12 bg-light">
+            <h1 class="titreBillet">Déconnection</h1>
+        </header>
+        <div class="col-lg-12 bg-light">
+            <p class="my-2 col-sm-12">
+                Vous avez finit votre travail déconnectez vous !
+            </p>
+            <a href="/forteroche/index.php?action=disconnect" class="btn btn-danger col-sm-12 col-md-2 offset-md-5" role="button">Déconnection</a>
+        </div>
+    </div>
 </article>

@@ -1,7 +1,7 @@
 <header class="col-lg-12 bg-light">
     <h1 class="titreBillet">action 2 (editer billet)</h1>
 </header>
-<p class="col-lg-12 bg-light">
+<div class="col-lg-12 bg-light">
     <!-- formulaire pour un nouveau billet -->
     <form action="/forteroche/index.php?action=updateBillet" method="post" id="commenter">
 
@@ -10,7 +10,7 @@
         <div class="form-group">
             <label class="col-md-8 control-label" for="titre">Nom du Chapitre</label>
             <div class="col-md-6">
-                <input id="titre" name="titre" type="text" placeholder="" class="form-control input-md" required="" value="<?= $billet['titre'] ?>">
+                <input id="myeditable-h1" name="titre" type="text" placeholder="" class="form-control input-md" required="" value="<?= $billet['titre'] ?>">
             </div>
         </div>
 
@@ -18,7 +18,7 @@
         <div class="form-group">
             <label class="col-md-8 control-label" for="contenu">Contenu du Chapitre</label>
             <div class="col-md-12">
-                <textarea id="Contenu" name="contenu" type="text" placeholder="" class="form-control input-md" required="">
+                <textarea id="myeditable-div" name="contenu" type="text" placeholder="" class="form-control input-md" required="">
                     <?= $billet['contenu'] ?>
                 </textarea>
             </div>
@@ -34,30 +34,4 @@
             </div>
         </div>
     </form>
-details (formulaire pour entrer les données)
-</p>
-
-
-<!--
-tiny MCE basic
-
-<!DOCTYPE html>
-<html>
-<head>
-  <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
-  <script>
-  tinymce.init({
-    selector: '#mytextarea'
-  });
-  </script>
-</head>
-
-<body>
-<h1>TinyMCE Quick Start Guide</h1>
-  <form method="post">
-    <textarea id="mytextarea">Hello, World!</textarea>
-  </form>
-</body>
-</html>
-
--->
+</div>

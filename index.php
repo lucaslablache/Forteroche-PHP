@@ -7,12 +7,8 @@ $routeur->routerRequete();
 
 //a faire =>
 
-// tiny MCE mettre en place
-
-// protection utilisateur
-// pas pour les champs tiny MCE
-
-//admin des commentaires en backend !!
-// signaler sur le frontoffice
-
-// GRAPHIQUE => alertes boostrap pour la modération
+// problemes de mise en page HTML
+// header => media querries sur la hauteur + ajouter un background image
+// nav burger positionrelative + top:XXXpx
+// revoir la modération avec vue billet comme exemple
+// htc access a finir pour  les autres vues

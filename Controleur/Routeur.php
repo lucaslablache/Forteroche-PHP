@@ -29,7 +29,7 @@ class Routeur
         {
             if (isset($_GET['action']))
             {
-                if ($_GET['action'] == 'billet')
+                if ($_GET['action'] == 'billet' or $_GET['action'] == 'commenter')
                 {
                     if (isset($_GET['id']))
                     {

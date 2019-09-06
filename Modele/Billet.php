@@ -49,8 +49,8 @@ class Billet extends Modele
     public function addBillet($titreBillet, $contenuBillet)
     {
         //vérification des entrées utilisateur
-        $titreBillet=$this->clear_string($titreBillet);
-        $contenuBillet=$this->clear_string($contenuBillet);
+        //$titreBillet=$this->clear_string($titreBillet);
+        //$contenuBillet=$this->clear_string($contenuBillet);
 
         $sql = 'insert into T_BILLET (BIL_DATE, BIL_TITRE, BIL_CONTENU)'
                 . 'values(?, ?, ?)';
@@ -62,8 +62,8 @@ class Billet extends Modele
     public function updateBillet($idBillet, $titreBillet, $contenuBillet)
     {
         //vérification des entrées utilisateur
-        $titreBillet=$this->clear_string($titreBillet);
-        $contenuBillet=$this->clear_string($contenuBillet);
+        //$titreBillet=$this->clear_string($titreBillet);
+        //$contenuBillet=$this->clear_string($contenuBillet);
 
         $sql = 'UPDATE T_BILLET SET BIL_DATE = ?, BIL_TITRE = ?, BIL_CONTENU = ?'
             . 'WHERE BIL_ID = ?';
@@ -74,7 +74,7 @@ class Billet extends Modele
     // récupération du dernier billet entré
     public function getLastCreated()
     {
-        $sql = 'select * from T_BILLET order by BIL_ID LIMIT 1';
+        $sql = 'select * from T_BILLET order by BIL_ID DESC';
         $lastCreated=$this->executerRequete($sql, array());
         return $lastCreated->fetch();
     }

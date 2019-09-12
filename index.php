@@ -6,5 +6,4 @@ $routeur->routerRequete();
 
 
 //a faire =>
-
 // htc access a finir pour  les autres vues

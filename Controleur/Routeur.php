@@ -130,6 +130,7 @@ class Routeur
                     if ($this->isAdmin())
                     {
                         $this->ctrlAdmin->writeBillet($_POST['titre'], $_POST['contenu']);
+
                     }
                     else
                     {

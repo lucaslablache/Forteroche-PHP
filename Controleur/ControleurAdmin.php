@@ -40,8 +40,8 @@ class ControleurAdmin
         $this->billet->addBillet($titreBillet, $contenuBillet);
         //actualisation
         $billet = $this->billet->getLastCreated();
-        var_dump($billet,true);
-        //header('Location: /forteroche/index.php?action=billet&id='.$billet['id']);
+        $vue = new Vue("Billet");
+        $vue ->generer(array('billet' => $billet));
     }
 
     public function editBillet($idbillet)

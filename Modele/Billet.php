@@ -61,9 +61,6 @@ class Billet extends Modele
     //mise a jour d'un Billet
     public function updateBillet($idBillet, $titreBillet, $contenuBillet)
     {
-        //vérification des entrées utilisateur
-        //$titreBillet=$this->clear_string($titreBillet);
-        //$contenuBillet=$this->clear_string($contenuBillet);
 
         $sql = 'UPDATE T_BILLET SET BIL_DATE = ?, BIL_TITRE = ?, BIL_CONTENU = ?'
             . 'WHERE BIL_ID = ?';

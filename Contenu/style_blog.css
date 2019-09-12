@@ -67,6 +67,12 @@ Bleu foncé (footer) :    #8BB1EB
 		text-shadow: 2px 2px 2px black;
 	}
 
+	nav.navbar.navbar-dark
+	{
+		position: absolute;
+		top: 10vh;
+	}
+
 /*     Slider      */
 	.banner
 	{
@@ -124,13 +130,7 @@ Bleu foncé (footer) :    #8BB1EB
 
 /*     Crédits      */
 
-nav
-{
-	background-image: url("AccueilAzu-01petit.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: top;
-}
+
 
 /* ---------------------------------------- */
 /* ==       MEDIAS QUERIES        */

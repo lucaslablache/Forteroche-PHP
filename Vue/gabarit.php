@@ -102,10 +102,9 @@ if (session_status() == PHP_SESSION_NONE)
                     <a class="nav-link text-light" href="<?= "index.php?action=login" ?>">Administration</a>
                 </li>
             </ul>
-
-
-
         </header>
+
+
         <div class="bg-bleu">
             <section class="pt-5">
                 <?= $contenu ?>

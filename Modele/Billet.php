@@ -71,9 +71,15 @@ class Billet extends Modele
     // récupération du dernier billet entré
     public function getLastCreated()
     {
-        $sql = 'select * from T_BILLET order by BIL_ID DESC';
+        $sql = 'select BIL_ID as id, BIL_DATE as date, BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET order by BIL_ID DESC';
         $lastCreated=$this->executerRequete($sql, array());
         return $lastCreated->fetch();
+    }
+
+    public function deleteBillet($idBillet)
+    {
+        $sql = 'DELETE FROM T_BILLET WHERE BIL_ID = ?';
+        $this->executerRequete($sql, array($idBillet));
     }
 
 }

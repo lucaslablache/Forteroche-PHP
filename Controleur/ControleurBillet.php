@@ -33,12 +33,4 @@ class ControleurBillet
         //actualisation
         $this->billet($idBillet);
     }
-
-    //récupération et affichage du dernier billet entré dans la BDD
-    public function lastCreated()
-    {
-        $billet = $this->billet->getLastCreated();
-        $vue = new Vue("Billet");
-        $vue ->generer(array('billet' => $billet));
-    }
 }

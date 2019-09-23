@@ -54,6 +54,26 @@
         </div>
     </div>
 
+    <!-- Suppression de billets -->
+    <div class="pb-4">
+        <header class="col-lg-12 bg-light">
+            <h1 class="titreBillet">Supprimer un billet existant</h1>
+        </header>
+        <div class="col-lg-12 bg-light">
+            <p>
+                Sélectionnez le chapitre a supprimer
+            </p>
+            <form action="/forteroche/index.php?action=deleteBillet" method="post">
+                <select name="id" id="id" class="mb-3 col-sm-12">
+                    <?php foreach ($billets as $billet): ?>
+                    <option value="<?= $billet['id']?>"><?= $billet['titre'] ?>
+                        <?php endforeach; ?>
+                </select>
+                <button id="confirmation" name="confirmation" class="btn btn-danger col-sm-12 col-md-2 offset-md-5" type="submit">Supprimer</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Modération des commentaires -->
     <div class="pb-4">
         <header class="col-lg-12 bg-light">

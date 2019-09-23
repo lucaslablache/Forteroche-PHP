@@ -6,4 +6,12 @@ $routeur->routerRequete();
 
 
 //a faire =>
-// htc access a finir pour  les autres vues
+//suppresssion des billets
+
+// page wiki MVC
+// cours orienté objet openclassrooms
+// https://bpesquet.developpez.com/tutoriels/php/evoluer-architecture-mvc/
+
+//htaccess contacter ovh
+
+//w3c vérifier

@@ -160,6 +160,17 @@ class Routeur
                     }
 
                 }
+                elseif ($_GET['action'] == 'deleteBillet')
+                {
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->deleteBillet($_POST['id']);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+                }
                 elseif ($_GET['action'] == 'disconnect')
                 {
                     $this->ctrlAdmin->disconnect();

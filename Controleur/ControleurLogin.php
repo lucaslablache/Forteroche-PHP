@@ -19,6 +19,7 @@ class ControleurLogin
         {
             if ($this->login->isPasswordCorrect($_POST['pseudo'],$_POST['password']))
             {
+
                 //on connecte l'admin
                 if (session_status() == PHP_SESSION_NONE)
                 {

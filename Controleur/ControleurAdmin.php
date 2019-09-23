@@ -40,8 +40,9 @@ class ControleurAdmin
         $this->billet->addBillet($titreBillet, $contenuBillet);
         //actualisation
         $billet = $this->billet->getLastCreated();
+        $commentaires = $this->commentaire->getCommentairesValides($billet['id']);
         $vue = new Vue("Billet");
-        $vue ->generer(array('billet' => $billet));
+        $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
     }
 
     public function editBillet($idbillet)
@@ -57,6 +58,14 @@ class ControleurAdmin
         $this->billet->updateBillet($id, $titre, $contenu);
         //actualisation
         header('Location: /forteroche/index.php?action=billet&id='.$id);
+    }
+
+    public function deleteBillet($idbillet)
+    {
+        //suppression du billet
+        $this->billet->deleteBillet($idbillet);
+        //redirection
+        header('Location: /forteroche/index.php?action=admin');
     }
 
     public function moderationCommentaires()

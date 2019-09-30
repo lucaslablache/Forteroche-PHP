@@ -22,7 +22,7 @@ if (session_status() == PHP_SESSION_NONE)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Tiny MCE -->
     <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
-    <script type="text/javascript">
+    <script>
         tinymce.init({
             selector: '#myeditable-h1',
             menubar: false,

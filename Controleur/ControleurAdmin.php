@@ -17,6 +17,7 @@ class ControleurAdmin
         $this->commentaire = new Commentaire();
     }
 
+    //Connection admin et affichage de la page
     public function admin()
     {
         $billetsPDO = $this->billet->getBillets();
@@ -25,6 +26,7 @@ class ControleurAdmin
         $vue->generer(array('billets' => $billets));
     }
 
+    //Déconnection et redirection sur la page d'accueil
     public function disconnect()
     {
         session_start();
@@ -34,6 +36,7 @@ class ControleurAdmin
         header('Location: /forteroche/index.php');
     }
 
+        //ajout d'un billet dans la BDD
     public function writeBillet($titreBillet, $contenuBillet)
     {
         //ajout du billet

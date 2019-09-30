@@ -25,10 +25,9 @@ class ControleurBillet
         $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
     }
 
-
+    // ajout du commentaire dans la BDD
     public function commenter($auteur, $contenu, $idBillet)
     {
-        // ajout du commentaire dans la BDD
         $this->commentaire->ajouterCommentaire($auteur, $contenu, $idBillet);
         //actualisation
         $this->billet($idBillet);

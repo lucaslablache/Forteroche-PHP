@@ -69,11 +69,11 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
 
                 <!-- Message-->
                 <div class="form-group">
-                    <label class="col-md-8 control-label" for="Message">Votre Message</label>
-                    <div class="col-md-12">
-                        <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
-                    </div>
+                <label class="col-md-8 control-label" for="Message">Votre Message</label>
+                <div class="col-md-12">
+                    <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
                 </div>
+        </div>
 
                 <!-- Button -->
                 <div class="form-group mb-0 pb-2">

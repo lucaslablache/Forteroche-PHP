@@ -97,6 +97,12 @@ Bleu foncé (footer) :    #8BB1EB
 		border-radius: 6px;
 	}
 
+	.contenutMCE p:last-of-type::after
+	{
+		content: " [...]";
+	}
+
+
 /*     Notes      */
 	.notes
 	{

@@ -6,12 +6,6 @@ $routeur->routerRequete();
 
 
 //a faire =>
-//suppresssion des billets
 
-// page wiki MVC
-// cours orienté objet openclassrooms
-// https://bpesquet.developpez.com/tutoriels/php/evoluer-architecture-mvc/
-
-//htaccess contacter ovh
-
-//w3c vérifier
+//w3c vérifier ok
+// => checker plusieurs pages => oui

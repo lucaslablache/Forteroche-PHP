@@ -22,21 +22,27 @@ class Commentaire extends Modele
         return $commentaires;
     }
 
-    //
+    // com statut
+    // 0 = crée
+    // 1 = signalé
+    // 2 = validé
+    // 3 = supprimé
+
+    //assigne le statut "signalé" a un commentaire
     public function setCommentaireSignale($idCommentaire)
     {
         $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 1 WHERE COM_ID = ?';
         $this->executerRequete($sql, array($idCommentaire));
     }
 
-    //
+    //assigne le statut "supprimé" a un commentaire
     public function setCommentaireSupprime($idCommentaire)
     {
         $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 3 WHERE COM_ID = ?';
         $this->executerRequete($sql, array($idCommentaire));
     }
 
-    //
+    //assigne le statut "validé" a un commentaire
     public function setCommentaireValide($idCommentaire)
     {
         $sql = 'UPDATE T_COMMENTAIRE SET COM_STATUT = 2 WHERE COM_ID = ?';
@@ -58,6 +64,7 @@ class Commentaire extends Modele
         $this->executerRequete($sql, array($date, $auteur, $contenu, $comstatut, $idBillet));
     }
 
+    //récupère l'id d'un billet
     public function getBilletId($idCommentaire)
     {
         $sql = 'SELECT BIL_ID as bil_id FROM T_COMMENTAIRE where COM_ID=?';
@@ -66,6 +73,7 @@ class Commentaire extends Modele
         return $requestResult['bil_id'];
     }
 
+    //récupère les commentaires d'un billet
     public function getCommentairesFromBillet($idBillet)
     {
         $sql = 'SELECT COM_ID as id, COM_DATE as date, COM_AUTEUR as auteur,'
@@ -73,16 +81,4 @@ class Commentaire extends Modele
         $commentairesPDO = $this->executerRequete($sql,array($idBillet));
         return $commentairesPDO;
     }
-
-    // com statut
-    // 0 = crée
-    // 1 = signalé
-    // 2 = validé
-    // 3 = supprimé
-
-    //define("COM_CREATED" , 0);
-    //define("COM_SIGNALED" , 1);
-    //define("COM_CHECKED" , 2);
-    //define("COM_DELETED" , 3);
-
 }

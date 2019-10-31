@@ -1,0 +1,38 @@
+
+/* ---------------------------------------- */
+/* ==       MEDIAS QUERIES        */
+/*---------------------------------------- */
+
+/*     Photo de présentation      */
+@media screen and (max-width: 992px)
+{
+    .hidden-xs
+    {
+        display: none;
+    }
+}
+
+
+/*	Navigations		*/
+@media screen and (min-width: 750px)
+{
+    .navigation
+    {
+        display: flex;
+    }
+
+    .burger
+    {
+        display: none;
+    }
+
+    .background
+    {
+        background-image: url(Background_forteroche.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: top;
+    }
+}
+

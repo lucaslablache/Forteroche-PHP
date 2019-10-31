@@ -6,14 +6,14 @@
         <?php foreach ($billets as $billet):?>
         <article class="col-lg-12">
             <header class="col-lg-12 bg-light">
-                <h1 class="titreBillet"><?= $billet['titre'] ?> </h1>
+                <div class="titreBillet"><?= $billet['titre'] ?> </div>
             </header>
             <div class="col-lg-12 bg-light">
                 <?= $billet['contenu'] ?>
             </div>
             <div class="container py-3">
                 <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#moderer<?=$billet['id']?>">
-                    Modérer !
+                    Modérer les commentaires !
                 </button>
                 <ul class="list-unstyled collapse" id="moderer<?=$billet['id']?>">
                     <?php foreach ($commentaires[$billet['id']] as $commentaire): ?>

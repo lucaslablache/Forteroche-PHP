@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label class="col-md-8 control-label" for="titre">Nom du Chapitre</label>
                 <div class="col-md-6">
-                    <input id="myeditable-h1" name="titre" type="text" placeholder="" class="form-control input-md" required="" value="<?= $billet['titre'] ?>">
+                    <input id="myeditable-h2" name="titre" type="text" placeholder="" class="form-control input-md" required="" value="<?= $billet['titre'] ?>">
                 </div>
             </div>
 

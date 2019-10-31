@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label class="col-md-8 control-label" for="titre">Titre</label>
                     <div class="col-md-6">
-                        <input id="myeditable-h1" name="titre" type="text" placeholder="Titre" class="form-control input-md">
+                        <input id="myeditable-h2" name="titre" type="text" placeholder="Titre" class="form-control input-md">
                     </div>
                 </div>
                 <div class="form-group">

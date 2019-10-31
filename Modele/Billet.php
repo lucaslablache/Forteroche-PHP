@@ -1,15 +1,9 @@
 <?php
 require_once 'Modele/Modele.php';
 
-/**
- * 
- */
 class Billet extends Modele
 {
-
-	/**
-	 * Renvoie la liste des billets du Blog
-	 */	
+    //Renvoie la liste des billets du Blog
 	public function getBillets()
 	{
 		$sql = 'select BIL_ID as id, BIL_DATE as date, BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET order by BIL_ID desc';
@@ -17,9 +11,7 @@ class Billet extends Modele
         return $billets;
 	}
 
-	/**
-	 * Renvoie les infos sur un billet spécifique
-	 */	
+	//Renvoie les infos sur un billet spécifique
 	public function getBillet($idBillet) 
 	{
         $sql = 'select BIL_ID as id, BIL_DATE as date, BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET where BIL_ID=?';
@@ -48,10 +40,6 @@ class Billet extends Modele
     //ajout d'un billet
     public function addBillet($titreBillet, $contenuBillet)
     {
-        //vérification des entrées utilisateur
-        //$titreBillet=$this->clear_string($titreBillet);
-        //$contenuBillet=$this->clear_string($contenuBillet);
-
         $sql = 'insert into T_BILLET (BIL_DATE, BIL_TITRE, BIL_CONTENU)'
                 . 'values(?, ?, ?)';
         $date = date("Y-m-d H:i:s");
@@ -76,6 +64,7 @@ class Billet extends Modele
         return $lastCreated->fetch();
     }
 
+    //suppression d'un billet
     public function deleteBillet($idBillet)
     {
         $sql = 'DELETE FROM T_BILLET WHERE BIL_ID = ?';

@@ -36,7 +36,7 @@ class ControleurAdmin
         header('Location: /forteroche/index.php');
     }
 
-        //ajout d'un billet dans la BDD
+    //ajout d'un billet dans la BDD
     public function writeBillet($titreBillet, $contenuBillet)
     {
         //ajout du billet
@@ -48,6 +48,7 @@ class ControleurAdmin
         $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
     }
 
+    //affichage de l'interface d'édition d'un billet
     public function editBillet($idbillet)
     {
         $billet = $this->billet->getBillet($idbillet);
@@ -55,6 +56,7 @@ class ControleurAdmin
         $vue->generer(array('billet' => $billet));
     }
 
+    //edition d'un billet
     public function processUpdateBillet($id, $titre, $contenu)
     {
         //modification du billet
@@ -63,6 +65,7 @@ class ControleurAdmin
         header('Location: /forteroche/index.php?action=billet&id='.$id);
     }
 
+    //suppression d'un billet
     public function deleteBillet($idbillet)
     {
         //suppression du billet
@@ -71,8 +74,10 @@ class ControleurAdmin
         header('Location: /forteroche/index.php?action=admin');
     }
 
+    //affichage de l'interface de modération de commentaires
     public function moderationCommentaires()
     {
+        //récupération du billet et des commentaires associés
         $PDObillets = $this->billet->getBillets();
         $billets = $PDObillets->fetchAll();
         $commentaires = [];
@@ -80,6 +85,7 @@ class ControleurAdmin
         {
             $commentaires += [ $billet['id'] => $this->commentaire->getCommentairesFromBillet($billet['id'])->fetchAll()];
         }
+        //affichage de l'interface
         $vue = new Vue("Moderation");
         $vue->generer(array('billets' => $billets,'commentaires' => $commentaires));
     }

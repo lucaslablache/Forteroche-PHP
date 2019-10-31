@@ -6,9 +6,10 @@ if (session_status() == PHP_SESSION_NONE)
 $this->titre = "Forteroche - " . $billet['titre']; ?>
     <div class="container bg-bleu">
         <!-- Chapitre -->
+        <h1 class="col-lg-12 bg-light">Billet simple pour l'alaska</h1>
         <article class="col-lg-12 py-4">
             <header class="col-lg-12 bg-light">
-                <h1><?= $billet['titre'] ?></h1>
+                <?= $billet['titre'] ?>
             </header>
             <div class="col-lg-12 bg-light">
                 <?= $billet['contenu'] ?>
@@ -21,7 +22,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
             <?php foreach ($commentaires as $commentaire): ?>
             <li class="media py-4 row">
                 <div class="mr-3 col-2 col-md-1 d-none d-sm-block px-0">
-                    <img class="img-fluid"  src="Contenu/avatar.jpg" alt="Generic placeholder image">
+                    <img class="img-fluid"  src="assets/avatar.jpg" alt="Generic placeholder image">
                 </div>
                 <div class="media-body bg-light col-10 col-md-9">
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
@@ -54,6 +55,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
             </li>
             <?php endforeach; ?>
         </ul>
+        <!-- poster un commentaire -->
         <div class="container py-2">
             <button type="button" class="btn btn-info ml-5" data-toggle="collapse" data-target="#commenter">Commenter !</button>
             <form action="/forteroche/index.php?action=commenter&id=<?=$billet['id']?>" method="post" class="collapse" id="commenter">
@@ -61,7 +63,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                 <h3>Votre message</h3>
                 <!-- Pseudo-->
                 <div class="form-group">
-                    <label class="col-md-8 control-label" for="pseudo">Votre pseudo</label>
+                    <label class="col-md-8 control-label" for="auteur">Votre pseudo</label>
                     <div class="col-md-6">
                         <input id="auteur" name="auteur" type="text" placeholder="Pseudo" class="form-control input-md" required="">
                     </div>
@@ -69,11 +71,11 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
 
                 <!-- Message-->
                 <div class="form-group">
-                <label class="col-md-8 control-label" for="Message">Votre Message</label>
-                <div class="col-md-12">
-                    <textarea id="Message" name="contenu" type="text" placeholder="Message" class="form-control input-md" required=""></textarea>
+                    <label class="col-md-8 control-label" for="Message">Votre Message</label>
+                    <div class="col-md-12">
+                        <textarea id="Message" name="contenu" placeholder="Message" class="form-control input-md" required=""></textarea>
+                    </div>
                 </div>
-        </div>
 
                 <!-- Button -->
                 <div class="form-group mb-0 pb-2">

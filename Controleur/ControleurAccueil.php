@@ -14,7 +14,7 @@ class ControleurAccueil
 
     public function accueil()
     {
-        $PDObillets = $this->billetManager->getBillets();
+        $PDObillets = $this->billetManager->getBilletsFinal();
         $billets = [];
         foreach ($PDObillets as $billet)
         {

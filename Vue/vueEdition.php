@@ -28,6 +28,13 @@
             <!-- récupération de l'id du billet modifié -->
             <input id="id" name="id" type="hidden" value="<?= $billet['id'] ?>">
 
+            <!-- Selection de l'action -->
+            <h4>Postez votre travail ou conservez le en brouillon</h4>
+            <select name="statut" id="statut" class="mb-3 col-sm-12">
+                <option value="1">Brouillon
+                <option value="0">Poster
+            </select>
+
             <!-- Button -->
             <div class="form-group">
                 <div class="col-md-8">

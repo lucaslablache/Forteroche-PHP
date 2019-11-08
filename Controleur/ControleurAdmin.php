@@ -20,10 +20,14 @@ class ControleurAdmin
     //Connection admin et affichage de la page
     public function admin()
     {
-        $billetsPDO = $this->billet->getBillets();
-        $billets = $billetsPDO->fetchAll();
+        $billetsExculdingDeletedPDO = $this->billet->getBilletsExculdingDeleted();
+        $billetsExculdingDeleted = $billetsExculdingDeletedPDO->fetchAll();
+
+        $billetsDeletedPDO = $this->billet->getBilletsDeleted();
+        $billetsDeleted = $billetsDeletedPDO->fetchAll();
         $vue = new Vue("Admin");
-        $vue->generer(array('billets' => $billets));
+        $vue->generer(array('billetsExculdingDeleted' => $billetsExculdingDeleted,
+            'billetsDeleted' => $billetsDeleted));
     }
 
     //Déconnection et redirection sur la page d'accueil
@@ -36,17 +40,30 @@ class ControleurAdmin
         header('Location: /forteroche/index.php');
     }
 
-    //ajout d'un billet dans la BDD
-    public function writeBillet($titreBillet, $contenuBillet)
+    //ajout d'un billet dans la BDD en tant que posté
+    public function writeBilletFinal($titreBillet, $contenuBillet)
     {
         //ajout du billet
-        $this->billet->addBillet($titreBillet, $contenuBillet);
+        $this->billet->addBilletFinal($titreBillet, $contenuBillet);
         //actualisation
         $billet = $this->billet->getLastCreated();
         $commentaires = $this->commentaire->getCommentairesValides($billet['id']);
         $vue = new Vue("Billet");
         $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
     }
+
+    //ajout d'un billet dans la BDD en tant que brouillon
+    public function writeBilletBrouillon($titreBillet, $contenuBillet)
+    {
+        //ajout du billet
+        $this->billet->addBilletBrouillon($titreBillet, $contenuBillet);
+        //actualisation
+        $billet = $this->billet->getLastCreated();
+        $commentaires = $this->commentaire->getCommentairesValides($billet['id']);
+        $vue = new Vue("Billet");
+        $vue ->generer(array('billet' => $billet, 'commentaires' => $commentaires));
+    }
+
 
     //affichage de l'interface d'édition d'un billet
     public function editBillet($idbillet)
@@ -57,10 +74,10 @@ class ControleurAdmin
     }
 
     //edition d'un billet
-    public function processUpdateBillet($id, $titre, $contenu)
+    public function processUpdateBillet($id, $titre, $contenu, $statut)
     {
         //modification du billet
-        $this->billet->updateBillet($id, $titre, $contenu);
+        $this->billet->updateBillet($id, $titre, $contenu, $statut);
         //actualisation
         header('Location: /forteroche/index.php?action=billet&id='.$id);
     }
@@ -73,12 +90,20 @@ class ControleurAdmin
         //redirection
         header('Location: /forteroche/index.php?action=admin');
     }
+    //restauration d'un billet
+    public function restaurerBillet($idbillet)
+    {
+        //suppression du billet
+        $this->billet->restaurerBillet($idbillet);
+        //redirection
+        header('Location: /forteroche/index.php?action=admin');
+    }
 
     //affichage de l'interface de modération de commentaires
     public function moderationCommentaires()
     {
         //récupération du billet et des commentaires associés
-        $PDObillets = $this->billet->getBillets();
+        $PDObillets = $this->billet->getBilletsFinal();
         $billets = $PDObillets->fetchAll();
         $commentaires = [];
         foreach ($billets as $billet)

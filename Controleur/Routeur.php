@@ -129,7 +129,14 @@ class Routeur
                 {
                     if ($this->isAdmin())
                     {
-                        $this->ctrlAdmin->writeBillet($_POST['titre'], $_POST['contenu']);
+                        if ($_POST['statut'] == 0)
+                        {
+                            $this->ctrlAdmin->writeBilletFinal($_POST['titre'], $_POST['contenu']);
+                        }
+                        elseif ($_POST['statut'] == 1)
+                        {
+                            $this->ctrlAdmin->writeBilletBrouillon($_POST['titre'], $_POST['contenu']);
+                        }
 
                     }
                     else
@@ -152,7 +159,7 @@ class Routeur
                 {
                     if ($this->isAdmin())
                     {
-                        $this->ctrlAdmin->processUpdateBillet($_POST['id'], $_POST['titre'], $_POST['contenu']);
+                        $this->ctrlAdmin->processUpdateBillet($_POST['id'], $_POST['titre'], $_POST['contenu'], $_POST['statut']);
                     }
                     else
                     {
@@ -165,6 +172,17 @@ class Routeur
                     if ($this->isAdmin())
                     {
                         $this->ctrlAdmin->deleteBillet($_POST['id']);
+                    }
+                    else
+                    {
+                        header('Location: /forteroche/index.php?action=login');
+                    }
+                }
+                elseif ($_GET['action'] == 'restaurerBillet')
+                {
+                    if ($this->isAdmin())
+                    {
+                        $this->ctrlAdmin->restaurerBillet($_POST['id']);
                     }
                     else
                     {

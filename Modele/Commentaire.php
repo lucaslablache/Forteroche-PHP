@@ -50,18 +50,19 @@ class Commentaire extends Modele
     }
 
     // Ajoute un commentaire dans la BDD
-    public function ajouterCommentaire($auteur, $contenu, $idBillet)
+    public function ajouterCommentaire($auteur, $contenu, $mail, $idBillet)
     {
         //Vérification des entrées utilisateur
         $auteur=$this->clear_string($auteur);
         $contenu=$this->clear_string($contenu);
+        $mail=$this->clear_string($mail);
 
-        $sql = 'insert into T_COMMENTAIRE (COM_DATE, COM_AUTEUR, COM_CONTENU, COM_STATUT, BIL_ID)'
-            . 'values(?, ?, ?, ?, ?)';
+        $sql = 'insert into T_COMMENTAIRE (COM_DATE, COM_AUTEUR, COM_MAIL, COM_CONTENU, COM_STATUT, BIL_ID)'
+            . 'values(?, ?, ?, ?, ?, ?)';
         $date = date("Y-m-d H:i:s");
         //$date = date(DATE_W3C);
         $comstatut=0; //on donne le statut 'crée' au commentaire
-        $this->executerRequete($sql, array($date, $auteur, $contenu, $comstatut, $idBillet));
+        $this->executerRequete($sql, array($date, $auteur, $mail, $contenu, $comstatut, $idBillet));
     }
 
     //récupère l'id d'un billet
@@ -80,5 +81,12 @@ class Commentaire extends Modele
             . 'COM_CONTENU as contenu, COM_STATUT as statut FROM T_COMMENTAIRE where BIL_ID=?';
         $commentairesPDO = $this->executerRequete($sql,array($idBillet));
         return $commentairesPDO;
+    }
+
+    public function getUser($pseudo)
+    {
+        $sql = 'SELECT COM_MAIL as mail FROM T_COMMENTAIRE where COM_AUTEUR =?';
+        $userPDO = $this->executerRequete($sql, array($pseudo));
+        return $userPDO;
     }
 }

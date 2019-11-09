@@ -26,10 +26,19 @@ class ControleurBillet
     }
 
     // ajout du commentaire dans la BDD
-    public function commenter($auteur, $contenu, $idBillet)
+    public function commenter($auteur, $contenu, $mail, $idBillet)
     {
-        $this->commentaire->ajouterCommentaire($auteur, $contenu, $idBillet);
-        //actualisation
-        $this->billet($idBillet);
+        $mailPDO=$this->commentaire->getUser($auteur);
+        $userTable=$mailPDO->fetch();
+        if ($mail == $userTable['mail'] || $userTable['mail'] == false)
+        {
+            $this->commentaire->ajouterCommentaire($auteur, $contenu, $mail, $idBillet);
+            //actualisation
+            $this->billet($idBillet);
+        }
+        else
+        {
+            throw new Exception("le pseudo '$auteur' est deja utilisé veuillez en choisir un autre");
+        }
     }
 }

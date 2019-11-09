@@ -44,7 +44,8 @@ class Routeur
                             {
                                 $auteur = $this->getParametre($_POST, 'auteur');
                                 $contenu = $this->getParametre($_POST, 'contenu');
-                                $this->ctrlBillet->commenter($auteur, $contenu, $idBillet);
+                                $mail = $this->getParametre($_POST, 'mail');
+                                $this->ctrlBillet->commenter($auteur, $contenu, $mail, $idBillet);
                             }
                             else
                             {

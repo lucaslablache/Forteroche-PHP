@@ -69,6 +69,14 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                     </div>
                 </div>
 
+                <!-- Mail -->
+                <div class="form-group">
+                    <label class="col-md-8 control-label" for="mail">Votre mail</label>
+                    <div class="col-md-6">
+                        <input id="mail" name="mail" type="text" placeholder="E-mail" class="form-control input-md" required="">
+                    </div>
+                </div>
+
                 <!-- Message-->
                 <div class="form-group">
                     <label class="col-md-8 control-label" for="Message">Votre Message</label>

@@ -67,7 +67,7 @@ if (session_status() == PHP_SESSION_NONE)
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Biographie</a>
+                                <a class="nav-link text-light" href="<?= "index.php?action=billet&id=1"?>">Mentions Légales</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="<?= "index.php?action=login" ?>">Administration</a>
@@ -85,7 +85,7 @@ if (session_status() == PHP_SESSION_NONE)
             <!-- nav grands ecrans -->
             <ul class="nav nav-tabs nav-fill nav_banner navigation">
                 <li class="nav-item ">
-                    <a class="navbar-brand text-light" href="#">Jean Forteroche</a>
+                    <a class="navbar-brand text-light" href="<?= "index.php"?>">Jean Forteroche</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="<?= "index.php"?>">Accueil</a>
@@ -99,7 +99,7 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Biographie</a>
+                    <a class="nav-link text-light" href="<?= "index.php?action=billet&id=1"?>">Mentions Légales</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="<?= "index.php?action=login" ?>">Administration</a>

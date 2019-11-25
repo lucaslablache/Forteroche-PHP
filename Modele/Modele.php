@@ -26,10 +26,10 @@ abstract class Modele
 		if ($this->bdd == null) 
 		{
 			// Création de la connexion dev
-			$this->bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			//$this->bdd = new PDO('mysql:host=localhost;dbname=monblog;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
             // Création de la connexion prod
-            //$this->bdd = new PDO('mysql:host=pencilanhf456db.mysql.db;dbname=pencilanhf456db;charset=utf8','pencilanhf456db','ovh456Db',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->bdd = new PDO('mysql:host=pencilanhf456db.mysql.db;dbname=pencilanhf456db;charset=utf8','pencilanhf456db','ovh456Db',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		}
 		return $this->bdd;
 	}

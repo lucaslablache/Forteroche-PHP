@@ -24,7 +24,7 @@ $this->titre = "Forteroche - " . $billet['titre']; ?>
                 <div class="mr-3 col-2 col-md-1 d-none d-sm-block px-0">
                     <img class="img-fluid"  src="assets/avatar.jpg" alt="Generic placeholder image">
                 </div>
-                <div class="media-body bg-light col-10 col-md-9">
+                <div class="media-body col-10 col-md-9 bg-light">
                     <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                     <?= $commentaire['contenu'] ?>
                 </div>

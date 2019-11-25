@@ -19,10 +19,19 @@
                     <?php foreach ($commentaires[$billet['id']] as $commentaire): ?>
                         <li class="media py-4">
                             <img class="mr-3 avatar" src="Contenu/avatar.jpg" alt="Generic placeholder image">
-                            <div class="media-body bg-light <?php if ($commentaire['statut'] == 3)
+                            <div class="media-body
+                            <?php
+                            if ($commentaire['statut'] == 1):
+                                echo "bg-warning";
+                            else:
+                                echo "bg-light";
+                            endif;
+                            ?>
+                            <?php if ($commentaire['statut'] == 3)
                                 {
                                     echo 'supprime';
-                                }?>">
+                                }
+                                ?>">
                                 <h5 class="mt-0 mb-1"><?= $commentaire['auteur'] ?></h5>
                                 <p><?= $commentaire['contenu'] ?></p>
                             </div>

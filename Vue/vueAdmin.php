@@ -1,5 +1,32 @@
-<?php ?>
 <article class="col-lg-12">
+    <?php $lenghtCommentaireSignales = count($commentairesSignales); ?>
+    <?php if ($lenghtCommentaireSignales > 0) : ?>
+        <div class="pb-4">
+            <header class="col-lg-12 bg-light">
+                <h1 class="titreBillet">Vous avez des commentaires signalés</h1>
+            </header>
+            <div class="col-lg-12  p-2">
+                <!-- emplacement des commentaires signalés -->
+                <?php foreach ($commentairesSignales as $commentaireSignale):?>
+                    <article class="col-lg-12 mt-2 bg-light">
+                        <h3 class="col-lg-12">
+                            <a href="<?= "index.php?action=billet&id=" . $commentaireSignale['bil_id'] ?>">
+                                <div class="titreBillet"><?= 'Consulter le billet' ?> </div>
+                            </a>
+                        </h3>
+                        <div class="row pb-1">
+                            <div class="col-lg-9">
+                                <?= $commentaireSignale['contenu'] ?>
+                            </div>
+                            <div class="col-lg-2 notes px-1">
+                                <p class="my-0"> le : <?= $commentaireSignale['date'] ?></p>
+                            </div>
+                            </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
     <!-- Ajouter un billet -->
     <div class="pb-4">
         <header class="col-lg-12 bg-light">

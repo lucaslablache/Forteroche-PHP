@@ -25,9 +25,16 @@ class ControleurAdmin
 
         $billetsDeletedPDO = $this->billet->getBilletsDeleted();
         $billetsDeleted = $billetsDeletedPDO->fetchAll();
+
+        $commentairesSignalesPDO = $this->commentaire->getCommentairesSignale();
+        $commentairesSignales = $commentairesSignalesPDO->fetchAll();
+
         $vue = new Vue("Admin");
-        $vue->generer(array('billetsExculdingDeleted' => $billetsExculdingDeleted,
-            'billetsDeleted' => $billetsDeleted));
+        $vue->generer(array(
+            'billetsExculdingDeleted' => $billetsExculdingDeleted,
+            'billetsDeleted' => $billetsDeleted,
+            'commentairesSignales' => $commentairesSignales
+        ));
     }
 
     //Déconnection et redirection sur la page d'accueil

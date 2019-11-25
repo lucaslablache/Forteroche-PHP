@@ -22,6 +22,14 @@ class Commentaire extends Modele
         return $commentaires;
     }
 
+    public function getCommentairesSignale()
+    {
+        $sql = 'select COM_ID as id, COM_DATE as date, COM_AUTEUR as auteur,'
+            . 'COM_CONTENU as contenu, BIL_ID as bil_id from T_COMMENTAIRE where COM_STATUT=1';
+        $commentaires = $this->executerRequete($sql, array());
+        return $commentaires;
+    }
+
     // com statut
     // 0 = crée
     // 1 = signalé
